@@ -1,0 +1,5 @@
+{
+    "githubIssues.issueBranchTitle": "${abderrahmen}/issue${issueNumber}",
+    "workbench.editor.defaultBinaryEditor": "default",
+    "files.eol": "\n"
+}

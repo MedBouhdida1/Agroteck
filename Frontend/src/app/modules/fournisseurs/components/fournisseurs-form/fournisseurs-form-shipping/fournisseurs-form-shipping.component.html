@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="form-group col-md-6">
+    <label for="shippingAddress">{{'address' | translate}}</label>
+    <input class="form-control" name="shippingAddress" #shippingAddress="ngModel" ngModel [(ngModel)]="fournisseur.shippingAddress">
+  </div>
+
+  <div class="form-group col-md-6">
+    <label for="shippingCity">{{'city' | translate}}</label>
+    <input class="form-control" name="shippingCity" #shippingCity="ngModel" ngModel [(ngModel)]="fournisseur.shippingCity">
+  </div>
+</div>

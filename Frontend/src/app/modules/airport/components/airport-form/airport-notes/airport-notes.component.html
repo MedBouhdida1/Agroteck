@@ -1,0 +1,16 @@
+<div class="row" [formGroup]="addform">
+
+
+
+
+  <div class="form-group col-md-6">
+    <label for="email">{{'notes' | translate}}</label>
+    <!-- <textarea class="form-control" name="email" #email="ngModel" ngModel [(ngModel)]="airport.notes" formControlName="notes"></textarea> -->
+    <textarea class="form-control" (ngModelChange)="geValues($event)" name="notes" ngModel [(ngModel)]="airport.notes"
+      formControlName="notes"></textarea>
+    <div *ngIf="notes?.invalid">
+      <small class=" text-danger" *ngIf="notes.errors?.['maxlength']">{{'max length' | translate}}</small>
+
+    </div>
+  </div>
+</div>

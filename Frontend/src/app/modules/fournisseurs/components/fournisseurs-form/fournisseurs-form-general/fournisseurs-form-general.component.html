@@ -1,0 +1,41 @@
+<div class="row" [formGroup]="addform">
+
+    <div class="form-group col-md-6">
+        <label class="required" for="code">{{'code' | translate}}</label>
+        <input class="form-control"  name="code" ngModel [(ngModel)]="fournisseur.code"
+            formControlName="code" required aria-invalid="true" (change)="geValues($event)" />
+    </div>
+
+    <div lass="required" class="form-group col-md-6">
+        <label for="name">{{'name' | translate}}</label>
+        <input class="form-control" name="name" ngModel [(ngModel)]="fournisseur.name"
+            required aria-invalid="true" formControlName="name"
+             (change)="geValues($event)" />
+    </div>
+
+    <div class="form-group col-md-6">
+        <label for="type">{{'type' | translate}}</label>
+        <select class="form-control" name="type" ngModel [(ngModel)]="fournisseur.type"
+             required aria-invalid="true"
+            (change)="geValues($event)">
+            <option value="INTERN">INTERN</option>
+            <option value="EXTERN">EXTERN</option>
+        </select>
+    </div>
+
+    <div class="form-group col-md-6">
+        <label lass="required" for="currencyCode">{{'currencyCode' | translate}}</label>
+        <input class="form-control" name="currencyCode" ngModel [(ngModel)]="fournisseur.currencyCode"
+            required aria-invalid="true"
+            formControlName="currencyCode" 
+            (change)="geValues($event)">
+    </div>
+
+    <div class="form-group col-md-6">
+        <label for="paymentTerm">{{'paymentTerm' | translate}}</label>
+        <input class="form-control" name="paymentTerm" ngModel [(ngModel)]="fournisseur.paymentTerm"
+             required formControlName="paymentTerm"
+             (change)="geValues($event)">
+    </div>
+
+</div>

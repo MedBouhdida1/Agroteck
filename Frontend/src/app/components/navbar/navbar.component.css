@@ -1,0 +1,12 @@
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+.mat-autocomplete-panel {
+  z-index: 1001;
+  /* Set a value higher than the default (1000) */
+}
+
+.lang-select {
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
