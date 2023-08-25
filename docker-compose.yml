@@ -5,7 +5,7 @@ services:
     build:
       context: ./Frontend
       dockerfile: Dockerfile
-    image: frontend:latest  # Specify your custom image name here
+    image: frontend  # Specify your custom image name here
     ports:
       - "4200:4200"
 
@@ -13,7 +13,7 @@ services:
     build:
       context: ./Backend
       dockerfile: Dockerfile
-    image: backend:latest  # Specify your custom image name here
+    image: backend  # Specify your custom image name here
     ports:
       - "8080:8080"
     depends_on:
