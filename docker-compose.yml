@@ -5,24 +5,28 @@ services:
     build:
       context: ./Frontend
       dockerfile: Dockerfile
+    image: frontend  # Specify your custom image name here
     ports:
       - "4200:4200"
-    
+
   backend:
     build:
-      context: ./Agrotech
+      context: ./Backend
       dockerfile: Dockerfile
+    image: backend  # Specify your custom image name here
     ports:
       - "8080:8080"
     depends_on:
       - mongodb
     environment:
       - spring.data.mongodb.uri=mongodb://mongodb:27017/agrotech
+
   mongodb:
     image: mongo
     ports:
       - "27017:27017"
     volumes:
       - mongodb-data:/data/db
+
 volumes:
   mongodb-data:
