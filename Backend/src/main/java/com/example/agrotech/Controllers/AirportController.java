@@ -19,23 +19,27 @@ import java.util.stream.Collectors;
 public class AirportController {
 
 
-    @Autowired
     private AirportService airportService;
 
-    @Autowired
     private ModelMapper modelMapper ;
+    @Autowired
+    public AirportController(AirportService airportService, ModelMapper modelMapper) {
+        this.airportService = airportService;
+        this.modelMapper = modelMapper;
+    }
 
     @PostMapping(value = "")
     public ResponseEntity<?> addAirport(@RequestBody @Validated Airport airport) {
         if (airportService.airportCodeExists(airport.getAirportCode())) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Airport code is already exist.");
         }
-        AirportDTO newAirport = modelMapper.map(airportService.ajouterAirport(airport), AirportDTO.class);
-        return new ResponseEntity<>(newAirport, HttpStatus.CREATED);
+        Airport airport1=airportService.ajouterAirport(airport);
+//        AirportDTO newAirport = modelMapper.map(airportService.ajouterAirport(airport), AirportDTO.class);
+        return new ResponseEntity<>(airport1, HttpStatus.CREATED);
     }
 
     @DeleteMapping(value = "{id}")
-    public ResponseEntity<Void> deleteSeaport(@PathVariable String id) {
+    public ResponseEntity<Void> deleteAirport(@PathVariable String id) {
         if (airportService.airportExists(id)) {
             airportService.supprimerById(id);
             return new ResponseEntity<>(HttpStatus.OK);
@@ -58,8 +62,9 @@ public class AirportController {
         }
 
         airport.setId(id);
-        AirportDTO updatedAirport = modelMapper.map(airportService.modifierAirport(airport), AirportDTO.class);
-        return new ResponseEntity<>(updatedAirport, HttpStatus.OK);
+//        AirportDTO updatedAirport = modelMapper.map(airportService.modifierAirport(airport), AirportDTO.class);
+        Airport airport1=airportService.modifierAirport(airport);
+        return new ResponseEntity<>(airport1, HttpStatus.OK);
     }
     @PatchMapping("deactivate/{id}")
     public ResponseEntity<?> deactivateAirport(@PathVariable String id) {
@@ -86,33 +91,38 @@ public class AirportController {
 
 
     @GetMapping(value = "active")
-    public ResponseEntity<List<AirportDTO>> getActiveTrueAirports() {
-        List<AirportDTO> airports = airportService.getActiveTrueAirports().stream().map(airport -> modelMapper.map(airport, AirportDTO.class)).collect(Collectors.toList());
+    public ResponseEntity<List<Airport>> getActiveTrueAirports() {
+        List<Airport>airports=airportService.getActiveTrueAirports();
+//        List<AirportDTO> airports = airportService.getActiveTrueAirports().stream().map(airport -> modelMapper.map(airport, AirportDTO.class)).collect(Collectors.toList());
         return new ResponseEntity<>(airports, HttpStatus.OK);
     }
     @GetMapping(value = "archived")
-    public ResponseEntity<List<AirportDTO>> getArchivedAirports() {
-        List<AirportDTO> airports = airportService.getArchivedAirports().stream().map(airport -> modelMapper.map(airport, AirportDTO.class)).collect(Collectors.toList());
+    public ResponseEntity<List<Airport>> getArchivedAirports() {
+        List<Airport>airports=airportService.getArchivedAirports();
+//        List<AirportDTO> airports = airportService.getArchivedAirports().stream().map(airport -> modelMapper.map(airport, AirportDTO.class)).collect(Collectors.toList());
         return new ResponseEntity<>(airports, HttpStatus.OK);
     }
 
     @GetMapping(value = "{id}")
-    public ResponseEntity<AirportDTO> getAirportById(@PathVariable String id) {
+    public ResponseEntity<Airport> getAirportById(@PathVariable String id) {
         if (airportService.airportExists(id)) {
-            AirportDTO airport = modelMapper.map(airportService.getAirportById(id), AirportDTO.class);
+            Airport airport = airportService.getAirportById(id);
+//            AirportDTO airport = modelMapper.map(airportService.getAirportById(id), AirportDTO.class);
             return new ResponseEntity<>(airport, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
     @GetMapping(value = "/searchactive")
-    public ResponseEntity<List<AirportDTO>> searchAirportByNameAndActive(@RequestParam String airportName) {
-        List<AirportDTO> airports = airportService.SearchAirportByNameAndActive(airportName).stream().map(airport -> modelMapper.map(airport, AirportDTO.class)).collect(Collectors.toList());
+    public ResponseEntity<List<Airport>> searchAirportByNameAndActive(@RequestParam String airportName) {
+        List<Airport>airports=airportService.SearchAirportByNameAndActive(airportName);
+//        List<AirportDTO> airports = airportService.SearchAirportByNameAndActive(airportName).stream().map(airport -> modelMapper.map(airport, AirportDTO.class)).collect(Collectors.toList());
         return new ResponseEntity<>(airports, HttpStatus.OK);
     }
     @GetMapping(value = "/searcharchived")
-    public ResponseEntity<List<AirportDTO>> searchAirportByNameAndArchived(@RequestParam String airportName) {
-        List<AirportDTO> airports = airportService.SearchAirportByNameAndArchived(airportName).stream().map(airport -> modelMapper.map(airport, AirportDTO.class)).collect(Collectors.toList());
+    public ResponseEntity<List<Airport>> searchAirportByNameAndArchived(@RequestParam String airportName) {
+        List<Airport>airports=airportService.SearchAirportByNameAndArchived(airportName);
+//        List<AirportDTO> airports = airportService.SearchAirportByNameAndArchived(airportName).stream().map(airport -> modelMapper.map(airport, AirportDTO.class)).collect(Collectors.toList());
         return new ResponseEntity<>(airports, HttpStatus.OK);
     }
 
