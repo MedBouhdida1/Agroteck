@@ -12,7 +12,6 @@ RUN npm install -g @angular/cli
 # Install project dependencies
 RUN npm install
 
-
 # Copy the rest of the application code
 COPY . .
 
