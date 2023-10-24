@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
 
@@ -7,11 +7,19 @@ import { environment } from 'environments/environment';
 })
 export class LoginService {
 
-  baseURL = environment.auth;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+  ) { }
+  baseUrl = 'http://localhost:8080';;
 
-  signIn(username , password){
-    return this.http.post(this.baseURL + "/signin" , {username , password} )
+
+  requestHeader = new HttpHeaders({ 'No-Auth': 'True' })
+
+
+  public signin(loginData: any) {
+    return this.http.post(this.baseUrl + "/authenticate", loginData, { headers: this.requestHeader });
   }
+
+
 }

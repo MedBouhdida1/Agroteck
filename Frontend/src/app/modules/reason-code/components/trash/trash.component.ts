@@ -26,8 +26,8 @@ export class TrashComponent implements OnInit {
 
 
   loading?= false;
-  pageNumber = 0;
-  pageSize = 10;
+  nbrReasons = 0;
+  page: number = 1;
   filter = "";
 
   reason: reason = {};
@@ -52,6 +52,7 @@ export class TrashComponent implements OnInit {
     this.service.getArchivedReasons().subscribe({
       next: (result) => {
         this.reasons = result;
+        this.nbrReasons = this.reasons.length;
         console.log(this.reasons);
       },
       error: (error) => {

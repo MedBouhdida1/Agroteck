@@ -10,6 +10,7 @@ import { SharedModule } from 'app/shared/shared.module';
 import { AirportFormGeneralComponent } from './components/airport-form/airport-form-general/airport-form-general.component';
 import { AirportNotesComponent } from './components/airport-form/airport-notes/airport-notes.component';
 import { TrashComponent } from './components/trash/trash.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -23,7 +24,9 @@ import { TrashComponent } from './components/trash/trash.component';
   imports: [
     CommonModule,
     AirportRoutingModule,
-    SharedModule
+    SharedModule,
+    NgxPaginationModule
+
   ],
   providers: [airportService]
 })

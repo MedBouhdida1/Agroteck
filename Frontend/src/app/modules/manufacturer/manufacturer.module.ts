@@ -8,7 +8,7 @@ import { TrashComponent } from './components/trash/trash.component';
 import { ManufacturerFormGeneralComponent } from './components/manufacturer-form/manufacturer-form-general/manufacturer-form-general.component';
 import { ManufacturerFormNotesComponent } from './components/manufacturer-form/manufacturer-notes/manufacturer-form-notes.component';
 import { SharedModule } from 'app/shared/shared.module';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,8 @@ import { SharedModule } from 'app/shared/shared.module';
   imports: [
     CommonModule,
     ManufacturerRoutingModule,
-    SharedModule
+    SharedModule,
+    NgxPaginationModule
   ]
 })
 export class ManufacturerModule { }

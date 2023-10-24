@@ -8,7 +8,7 @@ import { SharedModule } from 'app/shared/shared.module';
 import { SeaportFormGeneralComponent } from './components/seaport-form/seaport-form-general/seaport-form-general.component';
 import { SeaportInformationComponent } from './components/seaport-form/seaport-information/seaport-information.component';
 import { TrashComponent } from './components/trash/trash.component';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,8 @@ import { TrashComponent } from './components/trash/trash.component';
   imports: [
     CommonModule,
     SeaportRoutingModule,
-    SharedModule
+    SharedModule,
+    NgxPaginationModule
   ]
 })
 export class SeaportModule { }

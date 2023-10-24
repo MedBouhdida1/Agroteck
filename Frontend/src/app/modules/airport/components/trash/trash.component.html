@@ -88,7 +88,8 @@
             </thead>
 
             <tbody class="text-sm">
-                <tr class="row-data" *ngFor="let airport of airports">
+                <tr class="row-data"
+                    *ngFor="let airport of airports | paginate:{itemsPerPage: 5, currentPage: pages, totalItems: nbrAirports}">
                     <td>
                         {{airport.airportCode}}
                     </td>
@@ -113,6 +114,10 @@
                 </tr>
             </tbody>
         </table>
+        <div class="content" *ngIf="nbrAirports!=0">
+            <pagination-controls (pageChange)="pages=$event" class="my_pagination d-flex justify-content-center">
+            </pagination-controls>
+        </div>
     </div>
     <!-- <app-pagination [pageNumber]="pageNumber" [pageSize]="pageSize" [page]="trashPage"
         (onPageNumberChange)="onPageNumberChange($event)" (onPageSizeChange)="onPageSizeChange($event)">

@@ -254,5 +254,7 @@
   "category name": "Product category name",
   "Code productCat": "Product category code",
   "Nom productCat": "Product category name",
-  "productCat type": "Product category type"
+  "productCat type": "Product category type",
+  "nextLabel": "Next",
+  "previousLabel": "Previous"
 }

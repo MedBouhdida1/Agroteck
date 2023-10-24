@@ -27,8 +27,8 @@ export class TrashComponent implements OnInit {
   stepper!: StepperComponent;
 
   loading?= false;
-  pageNumber = 0;
-  pageSize = 10;
+  page: number = 1;
+  nbrManufacturers = 0;
   filter = "";
 
   manufacturer: manufacturer = {};
@@ -53,6 +53,7 @@ export class TrashComponent implements OnInit {
     this.service.getArchivedManufacturers().subscribe({
       next: (result) => {
         this.manufacturers = result;
+        this.nbrManufacturers = this.manufacturers.length;
         console.log(this.manufacturers);
       },
       error: (error) => {

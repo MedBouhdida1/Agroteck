@@ -39,8 +39,9 @@ export class ManufacturerListComponent implements OnInit {
   loading = false;
   manufacturer: manufacturer = {};
   // fournisseursPage: Page<Fournisseur> = initPage;
-  pageNumber = 0;
-  pageSize = 10;
+  page: number = 1;
+  nbrManufacturers = 0;
+
   filter = "";
   manufacturers: Array<manufacturer> = [];
   manufacturerName: string = "";
@@ -83,6 +84,7 @@ export class ManufacturerListComponent implements OnInit {
       },
     });
   }
+
   onWizardSave(id: string | null) {
     if (this.stepper.lastStep()) {
       this.onSave(id);
@@ -169,6 +171,7 @@ export class ManufacturerListComponent implements OnInit {
     this.service.getActiveManufacturers().subscribe({
       next: (result) => {
         this.manufacturers = result;
+        this.nbrManufacturers = this.manufacturers.length;
         console.log(this.manufacturers);
       },
       error: (error) => {

@@ -4,6 +4,8 @@ package com.example.agrotech.Controllers;
 import com.example.agrotech.DTO.AirportDTO;
 import com.example.agrotech.Models.Airport;
 import com.example.agrotech.Service.AirportService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -88,7 +90,6 @@ public class AirportController {
         airportService.ajouterAirport(airport);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 
     @GetMapping(value = "active")
     public ResponseEntity<List<Airport>> getActiveTrueAirports() {

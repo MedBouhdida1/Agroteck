@@ -40,8 +40,8 @@ export class ReasonListComponent implements OnInit {
   // fournisseurs: Array<Fournisseur> = [];
   reason: reason = {};
   // fournisseursPage: Page<Fournisseur> = initPage;
-  pageNumber = 0;
-  pageSize = 10;
+  nbrReasons = 0;
+  page: number = 1;
   filter = "";
   reasons: Array<reason> = [];
   reasonName: string = '';
@@ -157,6 +157,7 @@ export class ReasonListComponent implements OnInit {
     this.service.searchReasonByNameActive(this.reasonName).subscribe({
       next: (result) => {
         this.reasons = result;
+        this.nbrReasons = this.reasons.length;
         console.log(this.reasons);
       },
       error: (error) => console.error(error),
@@ -173,6 +174,7 @@ export class ReasonListComponent implements OnInit {
       .subscribe({
         next: (result) => {
           this.reasons = result;
+          this.nbrReasons = this.reasons.length;
           console.log(this.reasons)
         },
         error: (error) => {

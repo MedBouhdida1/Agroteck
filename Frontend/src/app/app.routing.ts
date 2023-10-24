@@ -16,6 +16,8 @@ import { TrashWComponent } from "./modules/warehouse/trash/trashw.component";
 import { TrashComponent } from "./shared/components/trash/trash.component";
 import { StartPageComponent } from "./start-page/start-page.component";
 import * as path from "path";
+import { AuthGuard } from "./components/auth/auth.guard";
+import { LoginGuard } from "./components/auth/login-guard.guard";
 
 const routes: Routes = [
   {
@@ -25,16 +27,16 @@ const routes: Routes = [
 
   {
     path: "login",
-    component: LoginComponent,
+    component: LoginComponent, canActivate: [LoginGuard],
     pathMatch: "full",
   },
   {
     path: "home",
-    component: StartPageComponent,
+    component: StartPageComponent, canActivate: [AuthGuard]
   },
   {
     path: "",
-    component: AdminLayoutComponent,
+    component: AdminLayoutComponent, canActivate: [AuthGuard],
     children: [
       { path: "dashboard", component: HomeComponent },
       { path: "dashboard/products", component: DashboardComponent },

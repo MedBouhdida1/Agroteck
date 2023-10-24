@@ -93,7 +93,8 @@
                 </tr>
             </thead>
             <tbody class="text-sm">
-                <tr class="row-data" *ngFor="let productCat of productCategories">
+                <tr class="row-data"
+                    *ngFor="let productCat of productCategories | paginate:{itemsPerPage: 5, currentPage: page, totalItems: nbrCategories}">
                     <td>
                         {{ productCat.productCategoryCode }}
                     </td>
@@ -120,6 +121,10 @@
                 </tr>
             </tbody>
         </table>
+        <div class="content" *ngIf="nbrCategories!=0">
+            <pagination-controls (pageChange)="page=$event" class="my_pagination d-flex justify-content-center">
+            </pagination-controls>
+        </div>
     </div>
     <!-- <app-pagination [pageNumber]="pageNumber" [pageSize]="pageSize" [page]="fournisseursPage"
         (onPageNumberChange)="onPageNumberChange($event)" (onPageSizeChange)="onPageSizeChange($event)">

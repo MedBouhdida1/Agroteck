@@ -29,8 +29,8 @@ export class TrashComponent implements OnInit {
   stepper!: StepperComponent;
 
   loading?= false;
-  pageNumber = 0;
-  pageSize = 10;
+  nbrCategories = 0;
+  page: number = 1;
   filter = "";
 
   productcategory: productCategory = {};
@@ -55,6 +55,7 @@ export class TrashComponent implements OnInit {
     this.service.getArchivedProductCategories().subscribe({
       next: (result) => {
         this.productCategories = result;
+        this.nbrCategories = this.productCategories.length;
         console.log(this.productCategories);
       },
       error: (error) => {

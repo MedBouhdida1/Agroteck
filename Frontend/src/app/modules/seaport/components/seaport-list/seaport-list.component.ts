@@ -41,8 +41,9 @@ export class SeaportListComponent implements OnInit {
   loading = false;
   seaport: seaport = {};
   // fournisseursPage: Page<Fournisseur> = initPage;
-  pageNumber = 0;
-  pageSize = 10;
+  page: number = 1;
+  nbrSeaports = 0;
+
   filter = "";
   seaports: Array<seaport> = [];
   seaportName: string = '';
@@ -158,6 +159,7 @@ export class SeaportListComponent implements OnInit {
     this.service.searchSeaportByNameActive(this.seaportName).subscribe({
       next: (result) => {
         this.seaports = result;
+        this.nbrSeaports = this.seaports.length;
         console.log(this.seaports);
       },
       error: (error) => console.error(error),
@@ -174,6 +176,7 @@ export class SeaportListComponent implements OnInit {
       .subscribe({
         next: (result) => {
           this.seaports = result;
+          this.nbrSeaports = this.seaports.length;
           console.log(this.seaports)
         },
         error: (error) => {

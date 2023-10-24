@@ -7,7 +7,6 @@ import { DialogComponent } from "@progress/kendo-angular-dialog";
 import { StepperComponent } from "app/shared/components/stepper/stepper.component";
 import { TranslateService } from "@ngx-translate/core";
 import { HotToastService } from "@ngneat/hot-toast";
-import { SharedService } from "app/modules/company/services/shared.service";
 
 @Component({
   selector: "app-airport-list",
@@ -39,12 +38,12 @@ export class AirportListComponent implements OnInit {
   loading = false;
   airport: airport = {};
   // fournisseursPage: Page<Fournisseur> = initPage;
-  pageNumber = 0;
-  pageSize = 10;
+
   filter = "";
   airports: Array<airport> = [];
   airportName: string = "";
-
+  nbrAirports = 0;
+  page: number = 1;
   constructor(
     private service: airportService,
     private translateService: TranslateService,
@@ -210,6 +209,7 @@ export class AirportListComponent implements OnInit {
     this.service.getActiveAirports().subscribe({
       next: (result) => {
         this.airports = result;
+        this.nbrAirports = this.airports.length;
         console.log(this.airports);
       },
       error: (error) => {

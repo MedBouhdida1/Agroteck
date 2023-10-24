@@ -8,9 +8,9 @@ describe('AirportListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AirportListComponent ]
+      declarations: [AirportListComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(AirportListComponent);
     component = fixture.componentInstance;

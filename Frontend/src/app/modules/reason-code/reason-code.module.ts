@@ -8,7 +8,7 @@ import { ReasonFormComponent } from './components/reason-form/reason-form.compon
 import { ReasonInformationComponent } from './components/reason-form/reason-information/reason-information.component';
 import { SharedModule } from 'app/shared/shared.module';
 import { TrashComponent } from './components/trash/trash.component';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,8 @@ import { TrashComponent } from './components/trash/trash.component';
   imports: [
     CommonModule,
     ReasonCodeRoutingModule,
-    SharedModule
+    SharedModule,
+    NgxPaginationModule
   ]
 })
 export class ReasonCodeModule { }

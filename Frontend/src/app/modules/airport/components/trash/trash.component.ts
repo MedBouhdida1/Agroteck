@@ -31,14 +31,14 @@ export class TrashComponent implements OnInit {
   stepper!: StepperComponent;
 
   loading?= false;
-  pageNumber = 0;
-  pageSize = 10;
+
   filter = "";
 
   airport: airport = {};
   airports: Array<airport> = [];
   airportName: string = "";
-
+  nbrAirports = 0;
+  pages: number = 1;
   // Page: Page<Fournisseur> = initPage;
   // onPaginationChange: EventEmitter<string> = new EventEmitter<string>();
 
@@ -57,6 +57,7 @@ export class TrashComponent implements OnInit {
     this.service.getArchivedAirports().subscribe({
       next: (result) => {
         this.airports = result;
+        this.nbrAirports = this.airports.length;
         console.log(this.airports);
       },
       error: (error) => {

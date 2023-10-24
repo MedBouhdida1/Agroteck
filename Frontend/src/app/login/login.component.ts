@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
+import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 import { LoginService } from "app/components/service/login.service";
+import { UserAuthService } from "app/components/service/user-auth.service";
 
 @Component({
   selector: "app-login",
@@ -8,30 +10,28 @@ import { LoginService } from "app/components/service/login.service";
   styleUrls: ["./login.component.scss"],
 })
 export class LoginComponent implements OnInit {
-  username: any;
-  password: any;
-  authenticationError = false;
-  otherError = false;
 
-  constructor(private router: Router, private loginService: LoginService) {}
 
-  ngOnInit(): void {}
+  constructor(private router: Router, private loginService: LoginService, private userAuthService: UserAuthService) { }
 
-  onClick() {
-    this.loginService.signIn(this.username, this.password).subscribe(
+  ngOnInit(): void { }
+
+  login(loginForm: NgForm) {
+    this.loginService.signin(loginForm.value).subscribe(
       (res: any) => {
-        localStorage.setItem("tocken", res.token);
-        localStorage.setItem("roles", res.roles);
+        console.log(loginForm.value)
+
+        this.userAuthService.setToken(res.jwtToken);
+        this.userAuthService.setRoles(res.user.role);
         this.router.navigate(["/start"]);
       },
-      (err) => {
-        if (err.status == 401) {
-          this.authenticationError = true;
-          localStorage.clear();
-        } else {
-          this.otherError = true;
-        }
+      err => {
+        console.log(err);
       }
-    );
+
+    )
+    console.log(loginForm.value);
   }
+
+
 }

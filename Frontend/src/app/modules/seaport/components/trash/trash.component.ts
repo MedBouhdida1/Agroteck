@@ -27,8 +27,8 @@ export class TrashComponent implements OnInit {
   stepper!: StepperComponent;
 
   loading?= false;
-  pageNumber = 0;
-  pageSize = 10;
+  pages: number = 1;
+  nbrArchivedSeaports = 0;
   filter = "";
 
   seaport: seaport = {};
@@ -53,6 +53,7 @@ export class TrashComponent implements OnInit {
     this.service.getArchivedSeaports().subscribe({
       next: (result) => {
         this.seaports = result;
+        this.nbrArchivedSeaports = this.seaports.length;
         console.log(this.seaports);
       },
       error: (error) => {

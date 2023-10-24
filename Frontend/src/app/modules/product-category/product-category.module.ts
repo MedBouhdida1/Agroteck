@@ -8,7 +8,7 @@ import { ProductCategoryFormGeneralComponent } from './components/product-catego
 import { ProductCategoryNotesComponent } from './components/product-category-form/product-category-notes/product-category-notes.component';
 import { ProductCategoryFormComponent } from './components/product-category-form/product-category-form.component';
 import { SharedModule } from 'app/shared/shared.module';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,8 @@ import { SharedModule } from 'app/shared/shared.module';
   imports: [
     CommonModule,
     ProductCategoryRoutingModule,
-    SharedModule
+    SharedModule,
+    NgxPaginationModule
   ]
 })
 export class ProductCategoryModule { }

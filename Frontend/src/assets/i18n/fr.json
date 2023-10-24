@@ -262,5 +262,7 @@
   "category name": "Nom de la catégorie du produit",
   "Code productCat": "Code de la catégorie du produit",
   "Nom productCat": "Nom de la catégorie du produit",
-  "productCat type": "Type de la catégorie du produit"
+  "productCat type": "Type de la catégorie du produit",
+  "nextLabel": "Nxt",
+  "previousLabel": "Prev"
 }

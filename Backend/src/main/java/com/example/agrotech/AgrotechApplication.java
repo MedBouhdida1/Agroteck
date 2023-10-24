@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 
 
-@ComponentScan(basePackages = {"com.example.agrotech.Controllers","com.example.agrotech.Service","com.example.agrotech.Repos","com.example.agrotech.Config"})
+@ComponentScan(basePackages = {"com.example.agrotech.Controllers","com.example.agrotech.Service","com.example.agrotech.Repos","com.example.agrotech.Config","com.example.agrotech.Util"})
 @SpringBootApplication
 public class AgrotechApplication {
 

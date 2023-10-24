@@ -5,7 +5,7 @@ import {
   NO_ERRORS_SCHEMA,
 } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 import { ChartsModule } from "@progress/kendo-angular-charts";
 import { ButtonsModule } from "@progress/kendo-angular-buttons";
@@ -38,6 +38,10 @@ import { BreedCodeTypeComponent } from './modules/breed-code-type/breed-code-typ
 import { AgeAssignmentComponent } from './modules/age-assignment/age-assignment.component';
 import { EggClassComponent } from './modules/egg-class/egg-class.component';
 import { MatAutocomplete, MatAutocompleteModule } from "@angular/material/autocomplete";
+import { AuthGuard } from "./components/auth/auth.guard";
+import { UserAuthService } from "./components/service/user-auth.service";
+import { AuthInterceptor } from "./components/auth/auth.interceptor";
+import { NgxPaginationModule } from 'ngx-pagination';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -61,6 +65,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     DateInputsModule,
     DatePickerModule,
     SharedModule,
+    NgxPaginationModule,
     MatAutocompleteModule,
     TranslateModule.forRoot({
       loader: {
@@ -91,7 +96,12 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     EggClassComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
-  providers: [],
+  providers: [AuthGuard, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }, UserAuthService
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
