@@ -6,6 +6,7 @@ pipeline {
         registry = "localhost:9000/repository/DockerRepo/"
         dockerImage = ''
     }
+
     
   
     stages {
